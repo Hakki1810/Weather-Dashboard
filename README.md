@@ -25,4 +25,4 @@ You can view the deployed application [here](https://hakki1810.github.io/Weather
 
 ## Link to the Github repository
 
-You can access the Github repository [here](https://github.com/Hakki1810/Weather-Dashboard.
+You can access the Github repository [here](https://github.com/Hakki1810/Weather-Dashboard.)
