@@ -17,7 +17,9 @@ so Tthat I can plan a trip accordingly. This web application provides the weathe
 
 5- When I click on a city in the search history then I am again presented with current and future conditions for that city
 
-## Screenshots
+## Demonstration gif
+
+![Alt Text](./assets/weather.gif)
 
 ## Link to the deployed application
 
