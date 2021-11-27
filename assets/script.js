@@ -77,6 +77,7 @@ function initPage() {
       axios.get(forecastQueryURL).then(function (response) {
         fivedayEl.classList.remove("d-none");
 
+        
         const forecastEls = document.querySelectorAll(".forecast");
         for (i = 0; i < forecastEls.length; i++) {
           forecastEls[i].innerHTML = "";
@@ -93,6 +94,7 @@ function initPage() {
             forecastMonth + "/" + forecastDay + "/" + forecastYear;
           forecastEls[i].append(forecastDateEl);
 
+         
           const forecastWeatherEl = document.createElement("img");
           forecastWeatherEl.setAttribute(
             "src",
@@ -121,7 +123,6 @@ function initPage() {
       });
     });
   }
-
   searchEl.addEventListener("click", function () {
     const searchTerm = cityEl.value;
     getWeather(searchTerm);
@@ -161,3 +162,4 @@ function initPage() {
 }
 
 initPage();
+  
