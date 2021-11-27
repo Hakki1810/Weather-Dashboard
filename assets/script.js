@@ -62,6 +62,7 @@ function initPage() {
         } else {
           UVIndex.setAttribute("class", "badge badge-danger");
         }
+        console.log(response.data[0].value);
         UVIndex.innerHTML = response.data[0].value;
         currentUVEl.innerHTML = "UV Index: ";
         currentUVEl.append(UVIndex);
@@ -137,4 +138,25 @@ function initPage() {
     return Math.floor(K - 273.15);
   }
 
-  
+  function renderSearchHistory() {
+    historyEl.innerHTML = "";
+    for (let i = 0; i < searchHistory.length; i++) {
+      const historyItem = document.createElement("input");
+      historyItem.setAttribute("type", "text");
+      historyItem.setAttribute("readonly", true);
+      historyItem.setAttribute("class", "form-control d-block bg-white");
+      historyItem.setAttribute("value", searchHistory[i]);
+      historyItem.addEventListener("click", function () {
+        getWeather(historyItem.value);
+      });
+      historyEl.append(historyItem);
+    }
+  }
+
+  renderSearchHistory();
+  if (searchHistory.length > 0) {
+    getWeather(searchHistory[searchHistory.length - 1]);
+  }
+}
+
+initPage();
