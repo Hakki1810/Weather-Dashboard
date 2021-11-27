@@ -62,7 +62,6 @@ function initPage() {
         } else {
           UVIndex.setAttribute("class", "badge badge-danger");
         }
-        console.log(response.data[0].value);
         UVIndex.innerHTML = response.data[0].value;
         currentUVEl.innerHTML = "UV Index: ";
         currentUVEl.append(UVIndex);
