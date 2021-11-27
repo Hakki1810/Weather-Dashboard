@@ -36,7 +36,7 @@ function initPage() {
       );
       currentPicEl.setAttribute("alt", response.data.weather[0].description);
       currentTempEl.innerHTML =
-        "Temperature: " + k2f(response.data.main.temp) + " &#176F";
+        "Temperature: " + k2c(response.data.main.temp) + " &#176C";
       currentHumidityEl.innerHTML =
         "Humidity: " + response.data.main.humidity + "%";
       currentWindEl.innerHTML =
@@ -62,7 +62,6 @@ function initPage() {
         } else {
           UVIndex.setAttribute("class", "badge badge-danger");
         }
-        console.log(response.data[0].value);
         UVIndex.innerHTML = response.data[0].value;
         currentUVEl.innerHTML = "UV Index: ";
         currentUVEl.append(UVIndex);
@@ -77,7 +76,6 @@ function initPage() {
       axios.get(forecastQueryURL).then(function (response) {
         fivedayEl.classList.remove("d-none");
 
-        
         const forecastEls = document.querySelectorAll(".forecast");
         for (i = 0; i < forecastEls.length; i++) {
           forecastEls[i].innerHTML = "";
@@ -94,7 +92,6 @@ function initPage() {
             forecastMonth + "/" + forecastDay + "/" + forecastYear;
           forecastEls[i].append(forecastDateEl);
 
-         
           const forecastWeatherEl = document.createElement("img");
           forecastWeatherEl.setAttribute(
             "src",
@@ -110,7 +107,7 @@ function initPage() {
           const forecastTempEl = document.createElement("p");
           forecastTempEl.innerHTML =
             "Temp: " +
-            k2f(response.data.list[forecastIndex].main.temp) +
+            k2c(response.data.list[forecastIndex].main.temp) +
             " &#176F";
           forecastEls[i].append(forecastTempEl);
           const forecastHumidityEl = document.createElement("p");
@@ -136,30 +133,8 @@ function initPage() {
     renderSearchHistory();
   });
 
-  function k2f(K) {
-    return Math.floor((K - 273.15) * 1.8 + 32);
+  function k2c(K) {
+    return Math.floor(K - 273.15);
   }
 
-  function renderSearchHistory() {
-    historyEl.innerHTML = "";
-    for (let i = 0; i < searchHistory.length; i++) {
-      const historyItem = document.createElement("input");
-      historyItem.setAttribute("type", "text");
-      historyItem.setAttribute("readonly", true);
-      historyItem.setAttribute("class", "form-control d-block bg-white");
-      historyItem.setAttribute("value", searchHistory[i]);
-      historyItem.addEventListener("click", function () {
-        getWeather(historyItem.value);
-      });
-      historyEl.append(historyItem);
-    }
-  }
-
-  renderSearchHistory();
-  if (searchHistory.length > 0) {
-    getWeather(searchHistory[searchHistory.length - 1]);
-  }
-}
-
-initPage();
   
